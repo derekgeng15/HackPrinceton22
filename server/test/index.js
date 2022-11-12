@@ -1,4 +1,6 @@
+const fetch = require('node-fetch');
 const { io } = require("socket.io-client");
+const { writeFile } = require('fs').promises;
 BASE = "http://127.0.0.1:5000";
 const socket = io(BASE);
 
@@ -25,10 +27,10 @@ async function getVidFrom(name) {
         }
       }
       // the final fetch request
-      response = await fetch(BASE + "/video/" + name, options).then((response) => response.json());
-      console.log(response)
+      const response = await fetch(BASE + "/video/" + name, options);
+      const buffer = await response.buffer();
+      await writeFile("saved_videos/" + name, buffer);
+      console.log("done!")
 };
 
-document.getElementById("video").addEventListener("click", () => {
-    getVidFrom("Derek");
-});
+getVidFrom("Derek")

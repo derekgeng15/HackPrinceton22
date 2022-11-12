@@ -3,7 +3,6 @@ const videoButton = document.getElementById('main_video-button');
 const video = document.getElementById('main_video');
 
 let mediaRecorder;
-
 videoButton.onclick = () => {
     switch (videoButton.textContent) {
         case 'Record':
@@ -61,3 +60,22 @@ function storeVar(value){
 }
 
 init();
+
+BASE = "http://localhost:3000";
+async function getQuestion() {
+    const options = { 
+      method: 'GET', // specify this is a GET request, not a PUT or POST
+      headers: {
+        "Accept" : "application/json" // request the response in JSON format
+      }
+    }
+    try {
+        // the final fetch request
+        const response = await fetch(BASE + "/question", options).then((response)=>response.json());
+        console.log(response.question)
+        document.getElementById("cool_q").innerText = response.question
+    } catch (error){
+      console.log(error);
+    }
+  };
+getQuestion()

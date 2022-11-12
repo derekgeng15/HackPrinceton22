@@ -16,7 +16,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 socketio = SocketIO(app)
 db = SQLAlchemy(app)
 
-
+currQuestion = ""
 class User(db.Model):
     username = db.Column(db.String(12), primary_key=True)
     mood = db.Column(db.Integer, primary_key=False)
@@ -86,12 +86,14 @@ api.add_resource(DataBase, '/database/<string:usn>')
 
 @app.route('/question', methods=['POST', 'GET'])
 def question():
+    global currQuestion
     if request.method == 'POST':
         data = request.get_json()
-        print(data)
-        socketio.emit('sending question', {'question': data['question']})
+        currQuestion = data['question']
+        socketio.emit('sending question', {'question': currQuestion})
         return data
-
+    if request.method == 'GET':
+        return {'question': currQuestion}
 
 @app.route('/video/<string:usn>', methods=['POST', 'GET'])
 def video(usn):
