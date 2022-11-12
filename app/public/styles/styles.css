@@ -42,6 +42,28 @@ for the daily question video
     transition-property: box-shadow;
     transition-duration: .3s; 
 }
+
+#finalize-button {
+    background-color: gainsboro;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    text-align: center;
+    justify-content: center;
+    vertical-align: center;  
+    line-height: 50px;
+    font-size: .75m;
+    transition-property: box-shadow;
+    transition-duration: .3s;
+}
+
+#finalize-button:hover {
+    cursor: pointer;
+    box-shadow: gray 0 0 5px 5px;
+    transition-property: box-shadow;
+    transition-duration: .3s; 
+}
+
 .container-home{
     display: flex;
     flex-direction: column;
