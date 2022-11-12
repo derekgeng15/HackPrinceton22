@@ -148,6 +148,7 @@ for the daily question video
     display: flex; 
     flex-direction: column;
     flex-flow: space-around;
+    justify-content: center;
 }
 .navbar{
     display: flex;

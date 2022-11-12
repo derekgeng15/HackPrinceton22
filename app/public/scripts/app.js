@@ -68,14 +68,18 @@ function storeVar(value){
 
 init();
 
-finalButton.onclick = function () {finalize()};
+finalButton.onclick = function () {
+    finalize();
+    document.getElementById('stories-button').style.visibility='visible';
+    console.log('finalize clicked');
+};
 function finalize() {
     const blob = new Blob(recordedBlobs, {type: 'video/mp4'});
     blob.lastModifiedDate = new Date();
     blob.name = "test.mp4"
     const url = URL.createObjectURL(blob);
     console.log(url);
-    document.getElementById("test-url").innerHTML = url;
+    
     
 }
 
