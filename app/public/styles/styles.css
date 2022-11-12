@@ -14,6 +14,7 @@ for the daily question video
     align-items: center;
     justify-content: space-around;
     margin-bottom: 20px;
+    
 
 }
 
@@ -152,16 +153,15 @@ for the daily question video
     display: flex;
     width: 100vw;
     justify-content: space-around;
-    position: absolute;
-    bottom: 5%;
+    /* position: absolute;
+    bottom: 5%; */
 }
 
 .navbar-nft {
     display: flex;
     width: 100vw;
     justify-content: space-around;
-    position: absolute;
-    bottom: 5%;
+    
 }
 
 
@@ -186,6 +186,8 @@ for the daily question video
     align-content: center;
     
     padding: 20px;
+    /* height: 90%; */
+    padding-bottom: 80px;
 }
 
 .inner-nft{
@@ -193,7 +195,7 @@ for the daily question video
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    
+    height: 90%;
 }
 
 
@@ -233,11 +235,13 @@ for the daily question video
 
 
 .icon-container {
-    margin-top: 10%;
+    margin-top: 20%;
 }
 .container-emote {
     display: flex;
     flex-direction: column;
+    height: 87%;
+    padding-bottom: 100px;
 }
 .person {
     display: flex;
