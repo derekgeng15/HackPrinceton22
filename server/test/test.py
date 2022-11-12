@@ -15,4 +15,8 @@ data = {'Derek': {'type': "New User", 'username' : 'Derek', 'mood': 3},
 for key, value in data.items():
     print(requests.post(BASE + 'database/' + key, json=value).json())
 
-print(requests.post(BASE + 'database/' + 'Derek', json={'type':'Change Mood', 'mood' : 5}))
+print(requests.post(BASE + 'database/' + 'Derek', json={'type':'Change Mood', 'mood' : 5}).json())
+files = {'upload_file': open('videos/Test.txt','rb')}
+values = {'DB': 'photcat', 'OUT': 'csv', 'SHORT': 'short'}
+print(BASE + 'video')
+print(requests.post(BASE + 'video/Derek', files = files, data=values))
