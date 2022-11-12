@@ -14,6 +14,13 @@ for the daily question video
     align-items: center;
     justify-content: space-around;
     height: 100vh;
+    margin-top: -80%;
+}
+
+#button_container{
+    margin-top: -80%;
+    display: flex;
+    justify-content: center;
 }
 
 #main_video {
@@ -34,6 +41,9 @@ for the daily question video
     font-size: .75m;
     transition-property: box-shadow;
     transition-duration: .3s;
+    margin-left: 40px;
+    margin-right: 40px;
+
 }
 
 #main_video-button:hover {
@@ -55,6 +65,8 @@ for the daily question video
     font-size: .75m;
     transition-property: box-shadow;
     transition-duration: .3s;
+    margin-right: 40px;
+    margin-left: 40px;
 }
 
 #finalize-button:hover {
@@ -134,7 +146,6 @@ for the daily question video
     display: flex; 
     flex-direction: column;
     flex-flow: space-around;
-
 }
 .navbar{
     display: flex;
@@ -151,6 +162,7 @@ for the daily question video
     position: absolute;
     bottom: 5%;
 }
+
 
 .nav-logo{
     padding-left: 70px;
@@ -184,13 +196,14 @@ for the daily question video
     
 }
 
+
+
 #send-button {
     background-color: black;
     border-radius: 15px;
     width: 800px;
     font-size: 40px;
     margin-top: 20px;
-    
 }
 
 #icons {
@@ -200,7 +213,10 @@ for the daily question video
     position: relative; 
     justify-content: center; 
     gap: 20px; 
+    text-align: center;
 }
+
+
 
 
 .btn {
