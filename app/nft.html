@@ -1,55 +1,65 @@
 <html>
-    <head>
-      <link rel="stylesheet" type="text/css" href="styles/styles.css" />
-        <link href="https://fonts.cdnfonts.com/css/gotham-rounded" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <title>NFT Screen</title>
-    </head>
-    <body>
-        <h1 style="font-size: 60px; color: white; text-align: center;">Send a Gift!</h1>
-        <div class="container-nft">
-            
-            <form action="/image" method="POST">
-            <div class="inner-nft fadeInUp">
-              <div class="form-group mb-3" style="padding:20px">
-                <label style="font-size: 40px;">Image</label>
-                <input type="text" class="form-control" placeholder="Input image file path (example: C:\yourFile.jpeg)" name="Image" style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
-              </div> 
-              
-              <div class="form-group mb-3" style="padding:20px">
-                <label style="font-size: 40px;">NFT Name</label>
-                <input type="text" class="form-control" placeholder="Enter the name of your NFT" name="name" style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
-              </div>
-              <div class="form-group mb-3" style="padding:20px">
-                <label style="font-size: 40px;">NFT Description</label>
-                <input type="text" class="form-control" placeholder="Enter NFT description" name="description" style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
-              </div>
-              <div class="form-group mb-3" style="padding:20px">
-                <label style="font-size: 40px;">Recipient Wallet Address</label>
-                <input type="text" class="form-control" placeholder="Enter recipient's wallet address" name="recipientAddress" style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
-              </div>
-              <div class="form-group mb-3" style="padding:20px">
-                <label style="font-size: 40px;">allowPlatformToOperateToken</label>
-                <input type="text" class="form-control" placeholder="true" name="allowPlatformToOperateToken" style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
-              </div>
-              <div class="form-group mb-3" style="padding:20px">
-                <label style="font-size: 40px;">Blockchain</label>
-                <input type="text" class="form-control" placeholder="goerli" name="chain" style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
-              </div>
-              <div class="d-grid mt-3" style="padding:20px">
-                <button type="submit" class="btn btn-success" id="send-button">SEND</button>
-              </div>
-            </div>
-            </form>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+  <link href="https://fonts.cdnfonts.com/css/gotham-rounded" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>NFT Screen</title>
+</head>
+
+<body>
+  <h1 style="font-size: 60px; color: white; text-align: center;">Send a Gift!</h1>
+  <div class="container-nft">
+
+    <!-- <form> -->
+      <div class="inner-nft fadeInUp">
+        <div class="form-group mb-3" style="padding:20px">
+          <label style="font-size: 40px;">Image</label>
+          <input type="text" class="form-control" id="nft-link" placeholder="Input image file path (example: https://images.mydrive.com/photos/1258/sample-photo-2105a3e.jpeg)"
+            name="Image" style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
         </div>
-        <div class="navbar-nft">
-            <div class="pages">
-                <a href="stories" class="nav-logo"><img src="img/stories-logo.png" height="130px"></a>
-                <a href="\" class="nav-logo"><img src="img/home-button.png" height="130px"></a>
-                <a href="emotes" class="nav-logo"><img src="img/heart-logo.png" height="130px"></a>
-            </div>
+
+        <div class="form-group mb-3" style="padding:20px">
+          <label style="font-size: 40px;">NFT Name</label>
+          <input type="text" class="form-control" id="nft-name"placeholder="Enter the name of your NFT" name="name"
+            style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
         </div>
-    </body>
-    <script src="scripts/fastMint.js"></script>
+        <div class="form-group mb-3" style="padding:20px">
+          <label style="font-size: 40px;">NFT Description</label>
+          <input type="text" class="form-control" id="description" placeholder="Enter NFT description" name="description"
+            style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
+        </div>
+        <div class="form-group mb-3" style="padding:20px">
+          <label style="font-size: 40px;">Recipient Wallet Address</label>
+          <input type="text" class="form-control" id="wallet" placeholder="Enter recipient's wallet address" name="recipientAddress"
+            style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
+        </div>
+        <div class="form-group mb-3" style="padding:20px">
+          <label style="font-size: 40px;">allowPlatformToOperateToken</label>
+          <input type="text" class="form-control" id="true-false" placeholder="true" name="allowPlatformToOperateToken"
+            style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
+        </div>
+        <div class="form-group mb-3" style="padding:20px">
+          <label style="font-size: 40px;">Blockchain</label>
+          <input type="text" class="form-control" id="blockchain" placeholder="goerli" name="chain"
+            style="height:100px; width:800px; font-size: 30px; text-align: center; border-radius: 15px">
+        </div>
+        <div class="d-grid mt-3" style="padding:20px">
+          <!-- <a href="\image" id="send-button">SEND</a> -->
+          <button type="submit" class="btn btn-success" id="send-button">SEND</button>
+        </div>
+        <h2 id="status">Status</h2>
+      </div>
+    <!-- </form> -->
+  </div>
+  <div class="navbar-nft">
+    <div class="pages">
+      <a href="stories" class="nav-logo"><img src="img/stories-logo.png" height="130px"></a>
+      <a href="\" class="nav-logo"><img src="img/home-button.png" height="130px"></a>
+      <a href="emotes" class="nav-logo"><img src="img/heart-logo.png" height="130px"></a>
+    </div>
+  </div>
+</body>
+<script src="scripts/fastMint.js"></script>
 
 </html>
