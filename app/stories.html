@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/gotham-rounded">
         <title>Stories Screen</title>
         <style>
-            .heart-pic {
+            .pic {
                 animation: GFG 15s infinite linear;
             }
 
@@ -24,12 +24,12 @@
             @keyframes GFG {
                 0% {
                     transform: rotate(0deg) 
-                          translateY(200px) rotate(0deg);
+                          translateY(150px) rotate(0deg);
                 }
       
                 100% {
                     transform: rotate(360deg) 
-                          translateY(200px) rotate(-360deg);
+                          translateY(150px) rotate(-360deg);
                 }
             }
 
@@ -42,7 +42,7 @@
             .stories-container {
                 display: flex;
                 flex-direction: column;
-                margin-top: 300px;
+                margin-top: 150px;
                 align-items: center;
             }
 
@@ -53,35 +53,37 @@
         </style>
     </head>
     <body >
-        <h1 style="color: white; font-size: 90px; text-align: center; margin-bottom: 100px">My Friends</h1>
+        <h1 style="color: white; font-size: 90px; text-align: center;">My Friends</h1>
         <div class = "stories-container">
             <div style="display:flex">
-                <div class="stories heart-pic">
+                <div class="stories pic">
                     <p>Derek Geng</p>
                     <img src="img/heart-logo.png"/>
                 </div>
-                <div class="stories heart-pic4">
+            </div>
+            <div style="display:flex">
+                <div class="stories pic" style="margin-right: 300px">
+                    <p>Derek Geng</p>
+                    <img src="img/heart-logo.png"/>
+                </div>
+                <div class="stories pic">
                     <p>Charles Yu</p>
                     <img src="img/heart-logo.png"/>
                 </div>
             </div>
             <div style="display:flex">
-                <div class="stories heart-pic3" style="margin-right: 100px">
-                    <p>Derek Geng</p>
+                <div class="stories pic"style="margin-right: 300px">
+                    <p>Charles Yu</p>
                     <img src="img/heart-logo.png"/>
                 </div>
-                <div class="stories heart-pic2">
+                <div class="stories pic">
                     <p>Charles Yu</p>
                     <img src="img/heart-logo.png"/>
                 </div>
             </div>
             <div style="display:flex">
-                <div class="stories heart-pic3"style="margin-right: 200px">
-                    <p>Charles Yu</p>
-                    <img src="img/heart-logo.png"/>
-                </div>
-                <div class="stories heart-pic4">
-                    <p>Charles Yu</p>
+                <div class="stories pic">
+                    <p>Derek Geng</p>
                     <img src="img/heart-logo.png"/>
                 </div>
             </div>
