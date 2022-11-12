@@ -1,5 +1,6 @@
 // button shit 
 const videoButton = document.getElementById('main_video-button');
+const finalButton = document.getElementById('finalize-button');
 const video = document.getElementById('main_video');
 
 let mediaRecorder;
@@ -23,6 +24,7 @@ async function init() {
             video: true
         });
         startWebCamera(stream);
+        video.muted = true; 
     } catch (err) {
         console.log('Error retrieving media device.');
         console.log(err);
@@ -39,7 +41,9 @@ function startRecording() {
         video.srcObject = window.stream;
     }
     mediaRecorder = new MediaRecorder(window.stream, {mimeType: 'video/webm;codecs=vp9,opus'});
+    video.muted = false; 
     mediaRecorder.start();
+    
     mediaRecorder.ondataavailable = recordVideo;
 }
 function recordVideo(event) {
@@ -52,7 +56,6 @@ function recordVideo(event) {
 function stopRecording() {
     mediaRecorder.stop();
 }
-
 
 function storeVar(value){
     let amount = value;
