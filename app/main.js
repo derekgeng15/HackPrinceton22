@@ -88,6 +88,59 @@ app.get('/question', async (req, res) => {
     question = await getQuestion()
   res.send({"question" : question})
 })
+
+var parseUrl = require('body-parser')
+
+const API_KEY = 'sk_live_a0bb5535-8e30-49a9-b8ad-862b918b8e22';
+let encodeUrl = parseUrl.urlencoded({ extended: false })
+
+/*app.get('/image', (req, res) => {
+  res.sendFile(__dirname + '/nft.html')
+})*/  
+app.post('/image', encodeUrl, (req, res) => {
+
+    console.log('Request body:', req.body)
+    const sdk = require('api')('@verbwire/v1.0#hr2s143dl9hbr7s9');
+  
+    sdk.auth(API_KEY);
+    sdk.post('/nft/mint/quickMintFromFile', {
+      allowPlatformToOperateToken: "true",
+      chain: "goerli",
+      filePath: "C:\\Users\\derekgeng15\\Downloads\\red-heart.png",
+      name: "heart",
+      description: "this is a heart",
+      recipientAddress: "0xb74Af1c951637062aB5066A30DE71e8cD2e4a6FB",
+    }, { accept: 'application/json' })
+      .then(resp => res.send(resp))
+      .catch(err => console.error(err));
+})
+
+
+
+
+
+/*app.get('/url', (req, res) => {
+  res.sendFile(__dirname + '/form2.html')
+})*/
+
+/*app.post('/url', encodeUrl, (req, res) => {
+  console.log('Form request:', req.body)
+
+  const sdk = require('api')('@verbwire/v1.0#hr2s143dl9hbr7s9');
+
+  sdk.auth(API_KEY);
+  sdk.post('/nft/mint/quickMintFromMetadataUrl', {
+    allowPlatformToOperateToken: req.body.allowPlatformToOperateToken,
+    chain: req.body.chain,
+    metadataUrl: req.body.url,
+    description: req.body.name,
+    recipientAddress: req.body.recipientAddress,
+  }, { accept: 'application/json' })
+    .then(resp => res.send(resp))
+    .catch(err => console.error(err));
+})*/
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
