@@ -45,13 +45,65 @@ for the daily question video
 .container-home{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    height: 90vh;
+
 }
+
+.fadeInUp {
+    -webkit-animation: fadeInUp 1.5s;
+    animation: fadeInUp 1.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0,60px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0,60px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn 1s;
+    animation-name: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+ }
+ 
+ @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+ }
+ 
+ 
+
+
 .container-home-text{
     display: flex;
-    gap: 5%;
-    flex-direction: row;
-    left: 50%;
+    gap: 3%;
+
+    justify-content: center;
 }
+
 .caption {
     display: block;
 }
@@ -70,10 +122,26 @@ for the daily question video
     bottom: 5%;
 }
 
+.navbar-nft {
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 5%;
+}
+
 .nav-logo{
     padding-left: 70px;
     padding-right: 70px;
+    
+    
 }
+
+.nav-logo:hover {
+    filter: opacity(50%);
+}
+
+
 
 .container-nft{
     display: flex;
