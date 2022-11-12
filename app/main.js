@@ -2,6 +2,7 @@
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const { io } = require("socket.io-client");
+const fs = require("fs");
 const { writeFile } = require('fs').promises;
 BASE = "http://127.0.0.1:5000";
 const socket = io(BASE);
@@ -88,61 +89,48 @@ app.get('/question', async (req, res) => {
     question = await getQuestion()
   res.send({"question" : question})
 })
-app.get('/vidplayer', (req, res) => {
-  console.log("FRIJFOIERJFRI")
-  res.sendFile(resolve('vidplayer.html'))
-})
 
-var parseUrl = require('body-parser')
+let videoPath = ""
+app.get("/vidplayer/:tagId", (req, res) => {
+  console.log(req.params.tagId)
+  videoPath = `public/saved_videos/${req.params.tagId}.mp4`
+  res.sendFile(resolve('vidplayer.html'));
+});
 
-const API_KEY = 'sk_live_a0bb5535-8e30-49a9-b8ad-862b918b8e22';
-let encodeUrl = parseUrl.urlencoded({ extended: false })
+app.get("/video", function (req, res) {
+  // Ensure there is a range given for the video
+  const range = req.headers.range;
+  if (!range) {
+    res.status(400).send("Requires Range header");
+  }
 
-/*app.get('/image', (req, res) => {
-  res.sendFile(__dirname + '/nft.html')
-})*/  
-app.post('/image', encodeUrl, (req, res) => {
+  // get video stats (about 61MB)
+  const videoSize = fs.statSync(videoPath).size;
 
-    console.log('Request body:', req.body)
-    const sdk = require('api')('@verbwire/v1.0#hr2s143dl9hbr7s9');
-  
-    sdk.auth(API_KEY);
-    sdk.post('/nft/mint/quickMintFromFile', {
-      allowPlatformToOperateToken: "true",
-      chain: "goerli",
-      filePath: "C:\\Users\\derekgeng15\\Downloads\\red-heart.png",
-      name: "heart",
-      description: "this is a heart",
-      recipientAddress: "0xb74Af1c951637062aB5066A30DE71e8cD2e4a6FB",
-    }, { accept: 'application/json' })
-      .then(resp => res.send(resp))
-      .catch(err => console.error(err));
-})
+  // Parse Range
+  // Example: "bytes=32324-"
+  const CHUNK_SIZE = 10 ** 6; // 1MB
+  const start = Number(range.replace(/\D/g, ""));
+  const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
 
+  // Create headers
+  const contentLength = end - start + 1;
+  const headers = {
+    "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+    "Accept-Ranges": "bytes",
+    "Content-Length": contentLength,
+    "Content-Type": "video/mp4",
+  };
 
+  // HTTP Status 206 for Partial Content
+  res.writeHead(206, headers);
 
+  // create video read stream for this particular chunk
+  const videoStream = fs.createReadStream(videoPath, { start, end });
 
-
-/*app.get('/url', (req, res) => {
-  res.sendFile(__dirname + '/form2.html')
-})*/
-
-/*app.post('/url', encodeUrl, (req, res) => {
-  console.log('Form request:', req.body)
-
-  const sdk = require('api')('@verbwire/v1.0#hr2s143dl9hbr7s9');
-
-  sdk.auth(API_KEY);
-  sdk.post('/nft/mint/quickMintFromMetadataUrl', {
-    allowPlatformToOperateToken: req.body.allowPlatformToOperateToken,
-    chain: req.body.chain,
-    metadataUrl: req.body.url,
-    description: req.body.name,
-    recipientAddress: req.body.recipientAddress,
-  }, { accept: 'application/json' })
-    .then(resp => res.send(resp))
-    .catch(err => console.error(err));
-})*/
+  // Stream the video chunk to the client
+  videoStream.pipe(res);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

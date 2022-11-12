@@ -1,22 +1,13 @@
-<html>
-    <head>
-        
-    </head>
-    <body>
-        <p>hi</p>
-        <video id="vid" width="250px" controls="controls autoplay">
-            <source src="saved_videos\testing.mp4"
-            type="video/mp4">
-            <!-- <source src="saved_videos\test-vid_MOV_AdobeExpress.ogg" type="video/ogg"> -->
-        </video>
-        <script>
-            var interval = setInterval(function(){
-            var countForVideo = document.getElementById('vid').readyState;
-            if(countForVideo == 4){
-                document.getElementById('vid').play();
-                clearInterval(interval);
-            }
-            },2000);
-        </script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTTP Video Stream</title>
+  </head>
+  <body>
+    <video id="videoPlayer" width="650" controls muted="muted" autoplay>
+      <source src="/video" type="video/mp4" />
+    </video>
+  </body>
 </html>
