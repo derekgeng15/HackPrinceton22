@@ -232,6 +232,15 @@ for the daily question video
     border: 0px;
     margin: 2%;
 }
+.fa-solid{
+    color: black;
+}
+.fa-solid:hover{
+    cursor: pointer;
+    filter:drop-shadow(10px 5px 1px grey);
+    transition-property: box-shadow;
+    transition-duration: .3s;
+} 
 
 
 .icon-container {
