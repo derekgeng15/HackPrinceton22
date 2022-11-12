@@ -88,6 +88,10 @@ app.get('/question', async (req, res) => {
     question = await getQuestion()
   res.send({"question" : question})
 })
+app.get('/vidplayer', (req, res) => {
+  console.log("FRIJFOIERJFRI")
+  res.sendFile(resolve('vidplayer.html'))
+})
 
 var parseUrl = require('body-parser')
 
