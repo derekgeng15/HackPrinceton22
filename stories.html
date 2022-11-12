@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.cdnfonts.com/css/gotham-rounded" rel="stylesheet">
+        <title>Home Screen</title>
+        <style>
+            h1 {
+                color: green;
+                text-align: center;
+            }
+      
+            h3 {
+                text-align: center;
+                margin-bottom: 100px;
+            }
+      
+            .heart-pic {
+                animation: GFG 5s infinite linear;
+            }
+            
+      
+            @keyframes GFG {
+                0% {
+                    transform: rotate(0deg) 
+                          translateY(100px) rotate(0deg);
+                }
+      
+                100% {
+                    transform: rotate(360deg) 
+                          translateY(100px) rotate(-360deg);
+                }
+            }
+        </style>
+    </head>
+    <body >
+        
+        <canvas id="myCanvas" height="800px" width="800px"></canvas>
+        <img class="heart-pic" src="heart-logo.png"/>
+        <img class="heart-pic" src="gif-button.png"/>
+        <div class="box"></div>
+
+        <div class="navbar">
+            <div class="pages">
+                <a href="emotes.html" class="nav-logo"><img src="heart-logo.png" height="130px"></a>
+                <a href="index.html" class="nav-logo"><img src="home-button.png" height="130px"></a>
+                <a href="nft.html" class="nav-logo"><img src="nft-logo.png" height="130px"></a>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+
+</html>
