@@ -276,3 +276,7 @@ for the daily question video
 #status {
     visibility: hidden;
 }
+
+#heart-1:hover, #heart-2:hover, #gif-1:hover, #gif-2:hover, #vid-1:hover, #vid-2:hover {
+    opacity: 50%
+}
