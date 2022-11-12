@@ -4,6 +4,7 @@ const finalButton = document.getElementById('finalize-button');
 const video = document.getElementById('main_video');
 
 let mediaRecorder;
+let recordedBlobs;
 videoButton.onclick = () => {
     switch (videoButton.textContent) {
         case 'Record':
@@ -41,6 +42,7 @@ function startRecording() {
         video.srcObject = window.stream;
     }
     mediaRecorder = new MediaRecorder(window.stream, {mimeType: 'video/webm;codecs=vp9,opus'});
+    console.log(mediaRecorder);
     video.muted = false; 
     mediaRecorder.start();
     
@@ -49,8 +51,10 @@ function startRecording() {
 function recordVideo(event) {
     if (event.data && event.data.size > 0) {
         video.srcObject = null;
-        let videoUrl = URL.createObjectURL(event.data);
-        video.src = videoUrl;
+        let videoURL = URL.createObjectURL(event.data);
+        video.src = videoURL;
+        console.log(videoURL);
+        console.log(video.src);
     }
 }
 function stopRecording() {
@@ -63,6 +67,19 @@ function storeVar(value){
 }
 
 init();
+
+finalButton.onclick = function () {finalize()};
+function finalize() {
+    const blob = new Blob(recordedBlobs, {type: 'video/mp4'});
+    blob.lastModifiedDate = new Date();
+    blob.name = "test.mp4"
+    const url = URL.createObjectURL(blob);
+    console.log(url);
+    document.getElementById("test-url").innerHTML = url;
+    
+}
+
+
 
 BASE = "http://localhost:3000";
 async function getQuestion() {
