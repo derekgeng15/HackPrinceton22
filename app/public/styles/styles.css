@@ -13,19 +13,20 @@ for the daily question video
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 100vh;
-    margin-top: -80%;
+    margin-bottom: 20px;
+
 }
 
 #button_container{
-    margin-top: -80%;
+
     display: flex;
     justify-content: center;
+    margin-top: 10%;
 }
 
 #main_video {
-    max-width: 500px;
-    max-height: 500px;
+    margin-left: -100px;
+    margin-right: -100px;
     border-radius: 30%;
 }
 
@@ -176,7 +177,6 @@ for the daily question video
 }
 
 
-
 .container-nft{
     display: flex;
     width: 100%;
@@ -214,16 +214,27 @@ for the daily question video
     justify-content: center; 
     gap: 20px; 
     text-align: center;
+    
 }
-
-
-
 
 .btn {
     width: 100px; 
     height: 100px; 
 }
 
+
+.bttn {
+    width: 100px; 
+    height: 100px; 
+    background-color: transparent;
+    border: 0px;
+    margin: 2%;
+}
+
+
+.icon-container {
+    margin-top: 10%;
+}
 .container-emote {
     display: flex;
     flex-direction: column;
