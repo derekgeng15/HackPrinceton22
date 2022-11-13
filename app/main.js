@@ -40,6 +40,8 @@ async function getVidFrom(name) {
       console.log(error);
     }
 };
+
+
 async function getQuestion() {
   const options = { 
     method: 'GET', // specify this is a GET request, not a PUT or POST
@@ -102,7 +104,10 @@ app.get("/vidplayer/:tagId", (req, res) => {
   videoPath = `public/saved_videos/${req.params.tagId}.mp4`
   res.sendFile(resolve('vidplayer.html'));
 });
-
+app.get('/vidName/:name', (req, res) => {
+  getVidFrom(req.params.name)
+  res.redirect(`/vidplayer/${req.params.name}` )
+})
 app.get("/video", function (req, res) {
   // Ensure there is a range given for the video
   const range = req.headers.range;
