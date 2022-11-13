@@ -82,7 +82,8 @@ for the daily question video
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 90vh;
+    height:95vh;
+    align-items: center;
 
 }
 

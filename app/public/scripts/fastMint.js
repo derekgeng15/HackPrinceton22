@@ -68,6 +68,7 @@ document.getElementById("send-button").addEventListener("click", () => {
   console.log(document.getElementById('nft-link').value);
   form.append('recipientAddress', document.getElementById('wallet').value);
   func();
+  document.getElementById("status").style.visibility = "visible";
 })
 async function func() {
   try {
