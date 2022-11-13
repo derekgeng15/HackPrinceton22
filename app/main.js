@@ -1,7 +1,8 @@
 // server side handling
-const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const { io } = require("socket.io-client");
+const bodyParser = require('body-parser');
+const Blob = require('node-blob');
 const fs = require("fs");
 const { writeFile } = require('fs').promises;
 BASE = "http://127.0.0.1:5000";
@@ -58,9 +59,14 @@ async function getQuestion() {
 // routing for app
 const {resolve} = require('path');
 const path = require('path')
-const express = require('express')
+const express = require('express');
+const { get } = require('http');
 const app = express()
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '500mb' }));
 const port = 3000
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
@@ -131,6 +137,25 @@ app.get("/video", function (req, res) {
   // Stream the video chunk to the client
   videoStream.pipe(res);
 });
+
+
+// async function getVidFromURL(url) {
+  
+//   try {
+//     response = fetch(url, {method: 'GET', // specify this is a GET request, not a PUT or POST
+//     headers: {
+//       "Accept" : "application/json" // request the response in JSON format
+//     }}).then((response)=>response.json()).then((response)=>console.log(response))
+//   } catch(e) {console.log(e)}
+// }
+app.post("/vidsaver/:tagId", async (req, res) => {
+  console.log(req.params.tagId)
+  console.log(req.body.text)
+  let blob = await fetch(req.body.text).then(r => r.blob());
+  console.log(blob)
+  return JSON.stringify({'result': 'valid'})
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
