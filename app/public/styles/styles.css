@@ -251,7 +251,7 @@ for the daily question video
 .container-emote {
     display: flex;
     flex-direction: column;
-    height: 87%;
+    height: 1800px;
     padding-bottom: 100px;
 }
 .person {

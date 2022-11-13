@@ -75,10 +75,6 @@ async function func() {
     response = await fetch('https://api.verbwire.com/v1/nft/mint/quickMintFromMetadataUrl', options)
       .then(response => response.json())
       .then(response => console.log(response))
-      .then(
-        response => {if (response.status == 'sent') {
-        document.getElementById("status").style.visibility = "visible";
-      }})
   }
   catch (e) {
     console.log(e);
