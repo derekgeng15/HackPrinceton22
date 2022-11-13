@@ -32,11 +32,13 @@ async function getVidFrom(name) {
     }
     // the final fetch request
     try {
+      console.log(BASE + "/video/" + name)
       const response = await fetch(BASE + "/video/" + name, options);
       const buffer = await response.buffer();
-      await writeFile("saved_videos/" + name, buffer);
+      await writeFile("public/saved_videos/" + name + ".mp4", buffer);
       console.log("done!");
-    } catch(error) {
+    } 
+    catch(error) {
       console.log(error);
     }
 };
@@ -101,32 +103,40 @@ app.get('/question', async (req, res) => {
 let videoPath = ""
 app.get("/vidplayer/:tagId", (req, res) => {
   console.log(req.params.tagId)
-  videoPath = `public/saved_videos/${req.params.tagId}.mp4`
+  videoPath = `public/saved_videos/${req.params.tagId}`
   res.sendFile(resolve('vidplayer.html'));
 });
+let videoStream = null;
 app.get('/vidName/:name', (req, res) => {
+  if (videoStream != null) {
+    videoStream.destroy()
+    console.log("destroying")
+  }
+  console.log("jdiofw")
   getVidFrom(req.params.name)
-  res.redirect(`/vidplayer/${req.params.name}` )
+  console.log(req.params.name)
+  res.redirect(`/vidplayer/${req.params.name}.mp4` )
 })
 app.get("/video", function (req, res) {
+  console.log(videoPath)
   // Ensure there is a range given for the video
-  const range = req.headers.range;
+  let range = req.headers.range;
   if (!range) {
     res.status(400).send("Requires Range header");
   }
 
   // get video stats (about 61MB)
-  const videoSize = fs.statSync(videoPath).size;
+  let videoSize = fs.statSync(videoPath).size;
 
   // Parse Range
   // Example: "bytes=32324-"
-  const CHUNK_SIZE = 10 ** 6; // 1MB
-  const start = Number(range.replace(/\D/g, ""));
-  const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
+  let CHUNK_SIZE = 10 ** 6; // 1MB
+  let start = Number(range.replace(/\D/g, ""));
+  let end = Math.min(start + CHUNK_SIZE, videoSize - 1);
 
   // Create headers
-  const contentLength = end - start + 1;
-  const headers = {
+  let contentLength = end - start + 1;
+  let headers = {
     "Content-Range": `bytes ${start}-${end}/${videoSize}`,
     "Accept-Ranges": "bytes",
     "Content-Length": contentLength,
@@ -137,7 +147,7 @@ app.get("/video", function (req, res) {
   res.writeHead(206, headers);
 
   // create video read stream for this particular chunk
-  const videoStream = fs.createReadStream(videoPath, { start, end });
+  videoStream = fs.createReadStream(videoPath, { start, end });
 
   // Stream the video chunk to the client
   videoStream.pipe(res);

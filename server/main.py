@@ -106,10 +106,10 @@ def video(usn):
         print('file saved')
         return request.get_json()
     if request.method == 'GET':
-        if not os.path.exists('uploads/' + usn):
+        if not os.path.exists('uploads/' + usn + ".mp4"):
             abort(404, message='no file')
         try:
-            return send_file('uploads/' + usn)
+            return send_file('uploads/' + usn + ".mp4")
         except Exception as e:
             return str(e)
 

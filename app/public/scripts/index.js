@@ -34,10 +34,3 @@ function draw()
     position.x += step.x;
     position.y += step.y;
 }
-BASE = "http://localhost:3000"
-document.addEventListener("click", (type)=> {
-    if (type.target == 'f') {
-        console.log("hello")
-    }
-
-});

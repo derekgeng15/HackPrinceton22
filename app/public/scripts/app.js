@@ -71,13 +71,13 @@ function startRecording() {
     mediaRecorder.start();
     mediaRecorder.ondataavailable = recordVideo;
 }
-async function saveFile(blob) {
+// async function saveFile(blob) {
 
-    const buffer = Buffer.from(await blob.arrayBuffer());
+//     const buffer = Buffer.from(await blob.arrayBuffer());
 
-    fs.writeFile('video.webm', buffer, () => console.log('video saved!'));
+//     fs.writeFile('video.webm', buffer, () => console.log('video saved!'));
 
-}
+// }
 async function sendBlob(bloburl) {
     let options = {
         method: 'POST', // specify this is a POST request, not a PUT or POST
@@ -101,7 +101,7 @@ function recordVideo(event) {
         blob = event.data;
         bloburl = URL.createObjectURL(blob)
         console.log(bloburl);
-        sendBlob(bloburl)
+        // sendBlob(bloburl)
     }
 }
 function stopRecording() {
@@ -116,24 +116,24 @@ function storeVar(value) {
 
 init();
 
+finalButton = document.getElementById("finalize-button")
 finalButton.onclick = function () {
     finalize();
     document.getElementById('stories-button').style.visibility='visible';
     console.log('finalize clicked');
 };
 function finalize() {
-    const blob = new Blob(recordedBlobs, {type: 'video/mp4'});
-    blob.lastModifiedDate = new Date();
-    blob.name = "test.mp4"
-    const url = URL.createObjectURL(blob);
-    console.log(url);
-    
+    // const blob = new Blob(recordedBlobs, {type: 'video/mp4'});
+    // blob.lastModifiedDate = new Date();
+    // blob.name = "test.mp4"
+    // const url = URL.createObjectURL(blob);
+    // console.log(url);
     
 }
 
 
 
-BASE = "http://localhost:3000";
+BASE = "http://localhost:3000"
 async function getQuestion() {
     const options = {
         method: 'GET', // specify this is a GET request, not a PUT or POST
@@ -142,7 +142,6 @@ async function getQuestion() {
         }
     }
     try {
-        // the final fetch request
         const response = await fetch(BASE + "/question", options).then((response) => response.json());
         console.log(response.question)
         document.getElementById("cool_q").innerText = response.question
@@ -150,4 +149,5 @@ async function getQuestion() {
         console.log(error);
     }
 };
+
 getQuestion()
